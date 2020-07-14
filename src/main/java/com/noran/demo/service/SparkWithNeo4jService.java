@@ -37,11 +37,9 @@ public class SparkWithNeo4jService {
 
     //Query neo4j and convert the graph to graphFrame
     public void graphQuery() {
-        String query = "";
-         Graph graph = runNeoInstance().nodes("", Map$.MODULE$.empty()).partitions(5).batch(100).loadGraph(ClassTag.AnyVal(), ClassTag.AnyVal());
         GraphFrame graphFrame = runNeoInstance().nodes("match (n:Person) RETURN n.name as id", Map$.MODULE$.empty())
                 .rels("match (p:Person)-[r]->(c:Movie) return p.name as src, c.title as dst, type(r) as value", Map$.MODULE$.empty())
-                .loadGraphFrame(ClassTag$.MODULE$.AnyVal(), ClassTag$.MODULE$.AnyVal());
+                .loadGraphFrame(ClassTag.AnyVal(), ClassTag.AnyVal());
         GraphFrame run = graphFrame.pageRank().maxIter(1).run();
         run.vertices().show();
     }
