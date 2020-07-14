@@ -26,10 +26,6 @@ public class CreateNodeDeserializer implements Deserializer {
         Nodes node = null;
         try {
             node = objectMapper.readValue(data, Nodes.class);
-        } catch (JsonParseException e) {
-            e.printStackTrace();
-        } catch (JsonMappingException e) {
-            e.printStackTrace();
         } catch (IOException e) {
             e.printStackTrace();
         }
