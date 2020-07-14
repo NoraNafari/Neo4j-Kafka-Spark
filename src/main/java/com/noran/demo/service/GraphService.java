@@ -15,6 +15,7 @@ public class GraphService {
     QueryBuilderService queryBuilderService;
 
 
+    //Query Neo4j using its java driver
     public ResponseEntity getNodeWithId(Integer id){
         return driverService.returnResultWithHttp(queryBuilderService.nodeByIdSearch(String.valueOf(id)));
     }

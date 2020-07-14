@@ -14,7 +14,7 @@ public class QueryBuilderService {
     //variableType:such as name, title, etc
     //variable: The amount of the certain variable: name of the actor, title of the movie, etc.
     //This will return any relationship between two nodes
-    //added double quotations for string variables????
+    //added double quotations for string variables
     public String anyRelationSearch(NodeRequestDto firstNode, NodeRequestDto secondNode) {
         return "MATCH (a:" + firstNode.getLabel() + "{" + firstNode.getVariableType() + " : " + "\""+ firstNode.getVariable() + "\"" +"})-[r]->" +
                 "(b: " + secondNode.getLabel() + "{" + secondNode.getVariableType() + " : " + "\"" + secondNode.getVariable() + "\"" + "}) RETURN r ";

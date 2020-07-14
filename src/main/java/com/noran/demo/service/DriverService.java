@@ -3,6 +3,7 @@ package com.noran.demo.service;
 import com.noran.demo.model.QueryRequestDto;
 import com.noran.demo.model.QueryStatementDto;
 import org.neo4j.driver.*;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
@@ -15,6 +16,9 @@ import java.util.Collections;
 
 @Service
 public class DriverService {
+
+    @Autowired
+    RestTemplate restTemplate;
 
     public TransactionConfig config(){
         return TransactionConfig.builder().build();
@@ -33,7 +37,7 @@ public class DriverService {
         ArrayList<QueryStatementDto> list = new ArrayList();
         list.add(queryStatementDto);
         queryRequestDto.setStatements(list);
-        RestTemplate restTemplate = new RestTemplate();
+
         HttpHeaders headers = new HttpHeaders();
         headers.setContentType(MediaType.APPLICATION_JSON);
         headers.setAccept(Collections.singletonList(MediaType.APPLICATION_JSON_UTF8));
